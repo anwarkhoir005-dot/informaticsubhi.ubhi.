@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123b2b">
+  <meta name="description" content="DombaKu — peternakan domba sehat, terawat, dan berkualitas untuk kebutuhan aqiqah, qurban, dan ternak.">
+  <title>DombaKu — Peternakan Domba Sehat</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #123b2b;
+      --forest-deep: #09271d;
+      --green: #79b942;
+      --lime: #b7df75;
+      --cream: #f7f5e9;
+      --paper: #fffef7;
+      --ink: #19372a;
+      --muted: #68766b;
+      --line: #e4e7d9;
+      --shadow: 0 18px 50px rgba(10, 43, 29, .12);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { font-family: "DM Sans", sans-serif; color: var(--ink); background: var(--cream); line-height: 1.65; }
+    h1,h2,h3,h4,.brand { font-family: "Nunito", sans-serif; line-height: 1.15; }
+    img { display: block; width: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+    button,input { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .topbar { position: fixed; inset: 0 0 auto; z-index: 1000; color: #fff; transition: .3s ease; }
+    .topbar.scrolled { background: rgba(9,39,29,.95); backdrop-filter: blur(14px); box-shadow: 0 6px 25px #0002; }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 78px; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.55rem; font-weight: 900; letter-spacing: -.7px; }
+    .brand-mark { width: 42px; height: 42px; border: 2px solid #e8f6d9; border-radius: 50% 50% 42% 42%; display: grid; place-items: center; font-size: 1.35rem; }
+    .brand span span { color: var(--lime); }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-size: .92rem; color: #f1f5ed; font-weight: 600; transition: color .2s; }
+    .nav-links a:hover,.nav-links a.active { color: var(--lime); }
+    .btn { border: 0; display: inline-flex; justify-content: center; align-items: center; gap: 9px; padding: 13px 21px; border-radius: 999px; font-weight: 800; transition: transform .25s, box-shadow .25s, background .25s; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px #0002; }
+    .btn-green { background: linear-gradient(135deg, #9ad44d, #68a832); color: #17351e; }
+    .btn-outline { color: #fff; border: 1px solid #ffffffa8; background: #ffffff12; }
+    .menu-toggle { display: none; border: 1px solid #ffffff55; background: #ffffff14; color: white; border-radius: 12px; width: 44px; height: 44px; font-size: 1.4rem; }
+    .hero { min-height: 720px; height: min(900px, 100svh); display: flex; align-items: center; position: relative; isolation: isolate; color: white; overflow: hidden; background: #183c2c; }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&w=2200&q=90") center 54%/cover; transform: scale(1.04); animation: heroZoom 16s ease-in-out infinite alternate; }
+    .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(5,28,20,.88) 0%, rgba(7,35,24,.69) 45%, rgba(7,35,24,.12) 100%), linear-gradient(0deg, rgba(7,35,24,.45), transparent 45%); }
+    .hero-content { padding-top: 70px; max-width: 760px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 1.6px; font-size: .78rem; font-weight: 900; color: var(--lime); margin-bottom: 20px; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    h1 { font-size: clamp(2.8rem, 6.5vw, 5.7rem); letter-spacing: -2.5px; max-width: 760px; margin-bottom: 22px; }
+    .highlight { color: var(--lime); }
+    .hero p { color: #e4eadf; max-width: 590px; font-size: clamp(1rem, 1.4vw, 1.13rem); margin-bottom: 30px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .hero-note { display: flex; gap: 12px; align-items: center; margin-top: 42px; color: #e3eadf; font-size: .88rem; }
+    .avatar-stack { display: flex; }
+    .avatar-stack span { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--forest); display: grid; place-items: center; background: #e4efcf; color: var(--forest); margin-left: -8px; font-size: .9rem; }
+    .avatar-stack span:first-child { margin-left: 0; }
+    .scroll-cue { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); color: white; opacity: .8; font-size: .8rem; letter-spacing: 1.2px; text-transform: uppercase; }
+    .scroll-cue span { display: block; text-align: center; font-size: 1.4rem; animation: bob 1.5s infinite; }
+    section { padding: 100px 0; }
+    .section-head { max-width: 680px; margin-bottom: 44px; }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .kicker { color: #56872e; text-transform: uppercase; letter-spacing: 1.8px; font-size: .76rem; font-weight: 900; margin-bottom: 12px; }
+    h2 { font-size: clamp(2rem, 4vw, 3.25rem); letter-spacing: -1.2px; margin-bottom: 14px; }
+    .section-head p { color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 65px; align-items: center; }
+    .about-image-wrap { position: relative; padding: 0 18px 20px 0; }
+    .about-image-wrap::before { content: ""; position: absolute; inset: 25px -5px -1px 35px; border-radius: 28px; background: #d9e6b6; transform: rotate(3deg); }
+    .about-image { height: 430px; border-radius: 26px; position: relative; box-shadow: var(--shadow); }
+    .image-badge { position: absolute; bottom: -15px; right: -5px; background: var(--forest); color: white; border-radius: 17px; padding: 18px 22px; box-shadow: var(--shadow); }
+    .image-badge strong { display: block; color: var(--lime); font-size: 1.55rem; font-family: Nunito,sans-serif; }
+    .about-copy p { color: var(--muted); margin: 16px 0; }
+    .check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0 30px; }
+    .check { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: .92rem; }
+    .check i { font-style: normal; display: grid; place-items: center; width: 29px; height: 29px; flex: 0 0 29px; border-radius: 50%; background: #e0edc8; color: #46752b; }
+    .products { background: var(--forest-deep); color: white; position: relative; overflow: hidden; }
+    .products::before { content: ""; position: absolute; width: 450px; height: 450px; border-radius: 50%; background: #4e8432; filter: blur(140px); opacity: .15; top: -100px; right: -100px; }
+    .products .section-head p { color: #c3d0c4; }
+    .products .kicker { color: var(--lime); }
+    .product-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 23px; position: relative; }
+    .product-card { overflow: hidden; border-radius: var(--radius); background: #fffdf4; color: var(--ink); transition: transform .3s, box-shadow .3s; }
+    .product-card:hover { transform: translateY(-9px); box-shadow: 0 18px 38px #0004; }
+    .product-image { height: 230px; position: relative; overflow: hidden; }
+    .product-image img { height: 100%; transition: transform .6s; }
+    .product-card:hover .product-image img { transform: scale(1.07); }
+    .pill { position: absolute; top: 14px; left: 14px; background: #e5f3d0; color: #355b22; font-size: .75rem; font-weight: 900; padding: 6px 12px; border-radius: 999px; }
+    .product-body { padding: 22px; }
+    .product-body h3 { font-size: 1.25rem; margin-bottom: 6px; }
+    .product-body p { color: var(--muted); font-size: .9rem; min-height: 48px; }
+    .product-meta { display: flex; justify-content: space-between; align-items: end; gap: 8px; margin: 19px 0; }
+    .price small { display: block; color: var(--muted); font-size: .75rem; }
+    .price strong { font-family: Nunito,sans-serif; font-size: 1.25rem; }
+    .order-btn { width: 100%; border: 0; border-radius: 12px; padding: 12px; background: var(--green); color: #14351f; font-weight: 900; transition: .2s; }
+    .order-btn:hover { background: var(--lime); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .benefit { padding: 25px 20px; border: 1px solid var(--line); background: #fffdf7; border-radius: 18px; transition: .3s; }
+    .benefit:hover { transform: translateY(-5px); border-color: #9bc46b; }
+    .benefit-icon { display: grid; place-items: center; width: 52px; height: 52px; background: #e7f0d7; border-radius: 16px; font-size: 1.5rem; margin-bottom: 18px; }
+    .benefit h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .benefit p { color: var(--muted); font-size: .88rem; }
+    .gallery { background: #eaf0dc; }
+    .gallery-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; grid-template-rows: 200px 200px; gap: 16px; }
+    .gallery-item { overflow: hidden; border-radius: 18px; position: relative; }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img { height: 100%; transition: transform .6s; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item::after { content: attr(data-caption); position: absolute; inset: auto 0 0; padding: 35px 16px 14px; color: white; font-weight: 800; background: linear-gradient(transparent, #061c13c9); }
+    .stats { background: #d9e7c0; padding: 45px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; text-align: center; }
+    .stat strong { display: block; font-family: Nunito,sans-serif; font-size: clamp(2rem,4vw,3rem); color: var(--forest); line-height: 1.2; }
+    .stat span { color: #536b4c; font-size: .9rem; font-weight: 700; }
+    .contact { background: var(--paper); }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 55px; align-items: start; }
+    .contact-info p { color: var(--muted); margin: 14px 0 24px; }
+    .contact-line { display: flex; gap: 13px; align-items: flex-start; margin: 20px 0; }
+    .contact-line .symbol { width: 43px; height: 43px; flex: 0 0 43px; display: grid; place-items: center; border-radius: 14px; background: #e5efd5; }
+    .contact-line small { display: block; color: var(--muted); }
+    .contact-form { background: #f4f5e9; border: 1px solid var(--line); border-radius: 24px; padding: 30px; }
+    .contact-form h3 { font-size: 1.5rem; margin-bottom: 20px; }
+    .field { margin-bottom: 15px; }
+    .field label { display: block; font-size: .85rem; font-weight: 800; margin-bottom: 7px; }
+    .field input,.field textarea,.field select { width: 100%; border: 1px solid #d9dfd0; background: #fffef9; padding: 13px 14px; border-radius: 11px; color: var(--ink); outline: none; }
+    .field input:focus,.field textarea:focus,.field select:focus { border-color: #80b64c; box-shadow: 0 0 0 3px #80b64c22; }
+    .field textarea { resize: vertical; min-height: 105px; }
+    .contact-form .btn { width: 100%; }
+    footer { background: var(--forest-deep); color: #e7eee4; padding: 52px 0 20px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr .8fr 1fr; gap: 45px; padding-bottom: 35px; }
+    footer .brand { margin-bottom: 15px; }
+    footer p,footer li { color: #b7c6b7; font-size: .9rem; }
+    footer ul { list-style: none; }
+    footer li { margin: 9px 0; }
+    footer h4 { color: white; margin-bottom: 15px; font-size: 1.05rem; }
+    .copyright { border-top: 1px solid #ffffff22; padding-top: 18px; display: flex; justify-content: space-between; gap: 12px; color: #aabaaa; font-size: .82rem; }
+    .toast { position: fixed; z-index: 2000; bottom: 24px; left: 50%; transform: translate(-50%, 25px); opacity: 0; pointer-events: none; background: #0a2a1e; color: white; padding: 13px 20px; border-radius: 12px; box-shadow: var(--shadow); transition: .3s; max-width: calc(100% - 30px); text-align: center; }
+    .toast.show { opacity: 1; transform: translate(-50%,0); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .12s; } .delay-2 { transition-delay: .24s; } .delay-3 { transition-delay: .36s; }
+    @keyframes heroZoom { from { transform: scale(1.04); } to { transform: scale(1.12); } }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 900px) {
+      .nav-links { gap: 17px; }
+      .nav-links a { font-size: .85rem; }
+      .nav > .btn { display: none; }
+      .about-grid { gap: 35px; }
+      .benefits-grid { grid-template-columns: repeat(2,1fr); }
+      .product-grid { gap: 15px; }
+      .product-body { padding: 17px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 32px, 560px); }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 16px; right: 16px; padding: 10px; border: 1px solid #ffffff24; border-radius: 16px; background: rgba(9,39,29,.98); flex-direction: column; align-items: stretch; gap: 0; box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; animation: appear .2s ease; }
+      .nav-links a { display: block; padding: 12px 14px; font-size: .96rem; }
+      .hero { min-height: 740px; height: 94svh; max-height: 900px; }
+      .hero::before { background-position: 58% center; }
+      .hero::after { background: linear-gradient(90deg,rgba(5,28,20,.88),rgba(5,28,20,.45)),linear-gradient(0deg,rgba(5,28,20,.5),transparent 65%); }
+      .hero-content { padding-top: 65px; }
+      h1 { font-size: clamp(2.65rem, 12vw, 4rem); letter-spacing: -1.8px; }
+      .hero p { font-size: .98rem; }
+      .hero-note { margin-top: 28px; }
+      section { padding: 75px 0; }
+      .about-grid,.contact-grid { grid-template-columns: 1fr; gap: 38px; }
+      .about-image { height: 330px; }
+      .check-list { gap: 13px 8px; }
+      .check { font-size: .82rem; }
+      .product-grid { grid-template-columns: 1fr; max-width: 430px; margin-inline: auto; }
+      .product-image { height: 245px; }
+      .product-body p { min-height: 0; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .benefit { padding: 18px 14px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 150px 150px; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 26px 12px; }
+      .contact-form { padding: 22px 18px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 25px 18px; }
+      .copyright { flex-direction: column; }
+    }
+    @media (max-width: 380px) {
+      .hero-actions .btn { width: 100%; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .check-list { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-rows: 180px 130px 130px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <div class="container nav">
+      <a class="brand" href="#beranda" aria-label="DombaKu beranda">
+        <span class="brand-mark">🐑</span>
+        <span>Domba<span>Ku</span></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a class="active" href="#beranda">Beranda</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+      <a class="btn btn-green" href="#kontak">☘ Hubungi Kami</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Peternakan domba modern</div>
+          <h1>Domba Sehat untuk <span class="highlight">Masa Depan</span> yang Lebih Baik.</h1>
+          <p>Kami merawat domba dengan sepenuh hati, pakan berkualitas, dan kandang yang terjaga. Temukan pilihan domba untuk aqiqah, qurban, maupun pengembangan usaha ternak.</p>
+          <div class="hero-actions">
+            <a href="#produk" class="btn btn-green">🐑 Lihat Domba</a>
+            <a href="#tentang" class="btn btn-outline">Kenali Peternakan ↓</a>
+          </div>
+          <div class="hero-note">
+            <div class="avatar-stack"><span>🌿</span><span>🐑</span><span>💚</span></div>
+            <span>Perawatan teratur · Pilihan transparan · Pelayanan ramah</span>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#tentang">Jelajahi <span>⌄</span></a>
+    </section>
+
+    <section id="tentang">
+      <div class="container about-grid">
+        <div class="about-image-wrap reveal">
+          <img class="about-image" loading="lazy" alt="Domba sehat di area peternakan" src="https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&w=1100&q=85">
+          <div class="image-badge"><strong>Sehat & Terawat</strong><span>Dimulai dari perawatan harian</span></div>
+        </div>
+        <div class="about-copy reveal delay-1">
+          <div class="kicker">Tentang DombaKu</div>
+          <h2>Peternakan domba pilihan untuk kebutuhan Anda.</h2>
+          <p>DombaKu hadir untuk membantu Anda menemukan domba yang sesuai kebutuhan. Kami mengutamakan kebersihan kandang, pemberian pakan yang tepat, dan pemantauan kondisi ternak secara rutin.</p>
+          <p>Informasi usia, kondisi, dan harga dapat dikonfirmasi sebelum transaksi agar Anda memilih dengan lebih tenang.</p>
+          <div class="check-list">
+            <div class="check"><i>✓</i> Perawatan rutin</div>
+            <div class="check"><i>✓</i> Informasi jelas</div>
+            <div class="check"><i>✓</i> Pilihan beragam</div>
+            <div class="check"><i>✓</i> Pemesanan mudah</div>
+          </div>
+          <a href="#kontak" class="btn btn-green">Tanya Peternak ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="produk">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Pilihan ternak</div>
+          <h2>Domba pilihan untuk berbagai kebutuhan.</h2>
+          <p>Contoh kategori domba yang bisa ditampilkan. Harga di bawah ini hanya ilustrasi dan perlu diganti sesuai stok serta harga peternakan Anda.</p>
+        </div>
+        <div class="product-grid">
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img loading="lazy" alt="Domba jantan" src="https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&w=850&q=85">
+              <span class="pill">Pilihan populer</span>
+            </div>
+            <div class="product-body">
+              <h3>Domba Jantan</h3>
+              <p>Cocok untuk calon indukan atau kebutuhan ternak. Kondisi dan bobot dikonfirmasi saat pemesanan.</p>
+              <div class="product-meta"><div class="price"><small>Harga mulai dari</small><strong>Rp2.500.000</strong></div><span>🐏</span></div>
+              <button class="order-btn" data-product="Domba Jantan">Tanya Produk ↗</button>
+            </div>
+          </article>
+          <article class="product-card reveal delay-1">
+            <div class="product-image">
+              <img loading="lazy" alt="Domba betina" src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=850&q=85">
+              <span class="pill">Calon indukan</span>
+            </div>
+            <div class="product-body">
+              <h3>Domba Betina</h3>
+              <p>Alternatif untuk pengembangan populasi ternak. Tanyakan usia, riwayat, dan kondisi terkini.</p>
+              <div class="product-meta"><div class="price"><small>Harga mulai dari</small><strong>Rp2.000.000</strong></div><span>🐑</span></div>
+              <button class="order-btn" data-product="Domba Betina">Tanya Produk ↗</button>
+            </div>
+          </article>
+          <article class="product-card reveal delay-2">
+            <div class="product-image">
+              <img loading="lazy" alt="Anak domba atau cempe" src="https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=850&q=85">
+              <span class="pill">Usia muda</span>
+            </div>
+            <div class="product-body">
+              <h3>Cempe</h3>
+              <p>Anak domba untuk dibesarkan. Pastikan umur sapih, kondisi kesehatan, dan kebutuhan pakannya.</p>
+              <div class="product-meta"><div class="price"><small>Harga mulai dari</small><strong>Rp1.000.000</strong></div><span>🐑</span></div>
+              <button class="order-btn" data-product="Cempe">Tanya Produk ↗</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="keunggulan">
+      <div class="container">
+        <div class="section-head center reveal">
+          <div class="kicker">Komitmen kami</div>
+          <h2>Merawat dengan hati, melayani dengan amanah.</h2>
+          <p>Prinsip yang kami jadikan panduan dalam mengelola peternakan.</p>
+        </div>
+        <div class="benefits-grid">
+          <article class="benefit reveal"><div class="benefit-icon">💚</div><h3>Peduli Kesehatan</h3><p>Memantau nafsu makan, kebersihan, dan perubahan kondisi ternak.</p></article>
+          <article class="benefit reveal delay-1"><div class="benefit-icon">🌱</div><h3>Pakan Terencana</h3><p>Pakan disesuaikan dengan usia, kebutuhan, dan kondisi domba.</p></article>
+          <article class="benefit reveal delay-2"><div class="benefit-icon">🤝</div><h3>Informasi Terbuka</h3><p>Diskusikan usia, bobot, harga, dan ketersediaan sebelum membeli.</p></article>
+          <article class="benefit reveal delay-3"><div class="benefit-icon">🚚</div><h3>Koordinasi Pengiriman</h3><p>Pengambilan atau pengiriman dibicarakan sesuai lokasi dan kesepakatan.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="galeri">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Suasana peternakan</div>
+          <h2>Sekilas kehidupan di kandang.</h2>
+          <p>Galeri contoh untuk memperlihatkan suasana ternak dan kegiatan perawatan sehari-hari.</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item reveal" data-caption="Domba di padang rumput"><img loading="lazy" alt="Domba di padang rumput" src="https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&w=1000&q=85"></div>
+          <div class="gallery-item reveal delay-1" data-caption="Waktu makan"><img loading="lazy" alt="Domba sedang makan" src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=800&q=85"></div>
+          <div class="gallery-item reveal delay-2" data-caption="Domba di alam terbuka"><img loading="lazy" alt="Domba di alam terbuka" src="https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&w=800&q=85"></div>
+          <div class="gallery-item reveal delay-1" data-caption="Perawatan ternak"><img loading="lazy" alt="Suasana peternakan" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=85"></div>
+          <div class="gallery-item reveal delay-2" data-caption="Ternak yang terawat"><img loading="lazy" alt="Domba di peternakan" src="https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=800&q=85"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="container stats-grid">
+        <div class="stat reveal"><strong data-count="100" data-suffix="+">0</strong><span>Domba dirawat*</span></div>
+        <div class="stat reveal delay-1"><strong data-count="50" data-suffix="+">0</strong><span>Pelanggan*</span></div>
+        <div class="stat reveal delay-2"><strong data-count="100" data-suffix="%">0</strong><span>Fokus perawatan</span></div>
+        <div class="stat reveal delay-3"><strong data-count="7" data-suffix=" hari">0</strong><span>Semangat merawat</span></div>
+      </div>
+      <p style="text-align:center;font-size:.75rem;color:#657b59;margin-top:18px;">*Angka contoh — ubah sesuai data peternakan yang sebenarnya.</p>
+    </div>
+
+    <section class="contact" id="kontak">
+      <div class="container contact-grid">
+        <div class="contact-info reveal">
+          <div class="kicker">Hubungi kami</div>
+          <h2>Siap mencari domba yang tepat?</h2>
+          <p>Kirim kebutuhan Anda. Kami bisa berdiskusi mengenai jenis domba, usia, perkiraan bobot, harga, dan jadwal pengambilan.</p>
+          <div class="contact-line"><div class="symbol">📱</div><div><strong>WhatsApp</strong><small id="phoneDisplay">Ganti dengan nomor WhatsApp peternak</small></div></div>
+          <div class="contact-line"><div class="symbol">📍</div><div><strong>Lokasi peternakan</strong><small id="locationDisplay">Isi desa, kecamatan, dan kabupaten</small></div></div>
+          <div class="contact-line"><div class="symbol">🕒</div><div><strong>Jam layanan</strong><small>Setiap hari — konfirmasi terlebih dahulu</small></div></div>
+        </div>
+        <form class="contact-form reveal delay-1" id="contactForm">
+          <h3>Ceritakan kebutuhan Anda</h3>
+          <div class="field"><label for="nama">Nama</label><input id="nama" name="nama" placeholder="Nama Anda" required></div>
+          <div class="field"><label for="jenis">Jenis domba</label><select id="jenis" name="jenis"><option>Domba jantan</option><option>Domba betina</option><option>Cempe</option><option>Konsultasi terlebih dahulu</option></select></div>
+          <div class="field"><label for="kebutuhan">Pesan</label><textarea id="kebutuhan" name="kebutuhan" placeholder="Contoh: mencari 2 ekor domba untuk aqiqah..." required></textarea></div>
+          <button class="btn btn-green" type="submit">Kirim via WhatsApp ↗</button>
+          <p style="font-size:.75rem;color:#68766b;margin-top:12px;">Form akan membuka WhatsApp setelah nomor peternak diatur di kode.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#beranda"><span class="brand-mark">🐑</span><span>Domba<span>Ku</span></span></a>
+          <p>Merawat ternak dengan perhatian, membangun usaha dengan ketekunan. Sehat, produktif, dan penuh berkah.</p>
+        </div>
+        <div><h4>Navigasi</h4><ul><li><a href="#beranda">Beranda</a></li><li><a href="#tentang">Tentang kami</a></li><li><a href="#produk">Produk domba</a></li><li><a href="#galeri">Galeri</a></li></ul></div>
+        <div><h4>Catatan</h4><p>Foto dan harga pada template ini merupakan contoh. Ganti dengan dokumentasi, informasi, dan harga asli peternakan Anda sebelum dipublikasikan.</p></div>
+      </div>
+      <div class="copyright"><span>© <span id="year"></span> DombaKu. Semua hak dilindungi.</span><span>🐑 Sehat • Terawat • Berkualitas</span></div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // PENTING: Ganti nomor berikut dengan nomor WhatsApp peternak.
+    // Gunakan kode negara 62 tanpa tanda +, contoh: 6281234567890
+    const WHATSAPP_NUMBER = "6281234567890";
+
+    const topbar = document.getElementById("topbar");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3200);
+    }
+
+    window.addEventListener("scroll", () => {
+      topbar.classList.toggle("scrolled", window.scrollY > 30);
+    }, { passive: true });
+
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.textContent = open ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // Animasi elemen saat masuk ke layar.
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+    // Angka statistik bergerak saat bagian statistik terlihat.
+    const stats = document.querySelector(".stats");
+    let statsPlayed = false;
+    const statsObserver = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !statsPlayed) {
+        statsPlayed = true;
+        document.querySelectorAll("[data-count]").forEach(el => {
+          const target = Number(el.dataset.count);
+          const suffix = el.dataset.suffix || "";
+          const start = performance.now();
+          const duration = 1300;
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(target * eased) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }
+    }, { threshold: 0.35 });
+    statsObserver.observe(stats);
+
+    function openWhatsApp(message) {
+      if (!/^62\d{8,15}$/.test(WHATSAPP_NUMBER) || WHATSAPP_NUMBER === "6281234567890") {
+        showToast("Kak, ganti WHATSAPP_NUMBER di bagian JavaScript dengan nomor peternak terlebih dahulu.");
+        return;
+      }
+      const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    document.querySelectorAll("[data-product]").forEach(button => {
+      button.addEventListener("click", () => {
+        openWhatsApp("Assalamu'alaikum, saya ingin bertanya tentang " + button.dataset.product + " yang tersedia di DombaKu. Mohon informasi usia, bobot, kondisi, dan harga terbaru.");
+      });
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const nama = document.getElementById("nama").value.trim();
+      const jenis = document.getElementById("jenis").value;
+      const kebutuhan = document.getElementById("kebutuhan").value.trim();
+      if (!nama || !kebutuhan) {
+        showToast("Mohon isi nama dan pesan terlebih dahulu.");
+        return;
+      }
+      openWhatsApp("Assalamu'alaikum, saya " + nama + ".\nSaya tertarik: " + jenis + ".\nKebutuhan: " + kebutuhan + "\nMohon informasi lebih lanjut. Terima kasih.");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
